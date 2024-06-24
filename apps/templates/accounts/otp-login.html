@@ -1,45 +1,40 @@
 {% extends 'layouts/base-full.html' %}
 {% load static %}
 {% block title %} Dashboard|login {% endblock title %}
-
+{% block stylesheets %}
+<link href="{% static 'assets/css/otp.css' %}" rel="stylesheet" type="text/css" />
+{% endblock stylesheets %}
 {% block content %}
 <div class="auth-page">
     <div class="container-fluid p-0">
         <div class="row g-0">
-            <div class="col-xxl-3 col-lg-4 col-md-5">
+            <div class="col-xxl-5 col-lg-5 col-md-5">
                 <div class="auth-full-page-content d-flex p-sm-5 p-4">
                     <div class="w-100">
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="index.html" class="d-block auth-logo">
-                                    <img src="{% static 'assets/images/logo-sm.svg' %}" alt="" height="28"> <span class="logo-txt">Minia</span>
+                                    <img src="{% static 'assets/images/logo-sm.svg' %}" alt="" height="28"> <span class="logo-txt"></span>
                                 </a>
                             </div>
                             <div class="auth-content my-auto">
                                 <div class="text-center">
                                     <h5 class="mb-0">Welcome Back !</h5>
-                                    <p class="text-muted mt-2">Sign in to continue to Minia.</p>
+                                    <p class="text-muted mt-2">Sign in to continue to Recycel Bandi.</p>
                                 </div>
-                                <form class="mt-4 pt-2" action="index.html">
-                                    <div class="mb-3">
-                                        <label class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="Enter username">
-                                    </div>
+                                <form class="mt-4 pt-2" action="#">
+                                    {% csrf_token %}
                                     <div class="mb-3">
                                         <div class="d-flex align-items-start">
                                             <div class="flex-grow-1">
-                                                <label class="form-label">Password</label>
-                                            </div>
-                                            <div class="flex-shrink-0">
-                                                <div class="">
-                                                    <a href="auth-recoverpw.html" class="text-muted">Forgot password?</a>
-                                                </div>
+                                                <label class="form-label">Phone Number</label>
                                             </div>
                                         </div>
                                         
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="input" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
-                                            <button class="btn btn-light shadow-none ms-0" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            <button class="btn btn-light shadow-none ms-0" type="button" >+91 </button>
+                                            <input type="input" class="form-control" id="phone_number" name="phone_number" placeholder="Enter Phone number" aria-label="Password" aria-describedby="password-addon">
+                                            
                                         </div>
                                     </div>
                                     <div class="row mb-4">
@@ -54,7 +49,7 @@
                                         
                                     </div>
                                     <div class="mb-3">
-                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In</button>
+                                        <button class="btn btn-primary w-100 waves-effect waves-light" id="request-otp"  onclick="sendOTP()" type="button">Request OTP</button>
                                     </div>
                                 </form>
 
@@ -82,12 +77,12 @@
                                     </ul>
                                 </div>
 
-                                <div class="mt-5 text-center">
+                                <!-- <div class="mt-5 text-center">
                                     <p class="text-muted mb-0">Don't have an account ? <a href="/sigin/" class="text-primary fw-semibold"> Signup now </a> </p>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="mt-4 mt-md-5 text-center">
-                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script>2024 Minia   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script>2024 Recycle Bandi   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Dwebworks</p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +90,7 @@
                 <!-- end auth full page content -->
             </div>
             <!-- end col -->
-            <div class="col-xxl-9 col-lg-8 col-md-7">
+            <div class="col-xxl-7 col-lg-7 col-md-7">
                 <div class="auth-bg pt-md-5 p-4 d-flex">
                     <div class="bg-overlay bg-primary"></div>
                     <ul class="bg-bubbles">
@@ -211,3 +206,7 @@
     <!-- end container fluid -->
 </div>
 {% endblock content %}
+{% block javascripts %}
+
+<script src="{% static 'assets/js/authentication/send_otp.js' %}"></script>
+{% endblock javascripts %}

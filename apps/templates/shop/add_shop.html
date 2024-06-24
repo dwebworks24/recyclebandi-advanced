@@ -1,0 +1,102 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Dashboard|siftech {% endblock title %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Add Shop</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">shop</a></li>
+                                <li class="breadcrumb-item active">Add Shop</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <!-- <div class="card-header">
+                            <h4 class="card-title">PristineJS Validation</h4>
+                            <p class="card-title-desc">PristineJS Vanilla javascript form validation library</p>
+                        </div> -->
+                        <!-- end card header -->
+
+                        <div class="card-body">
+                            <div>
+                                <h5 class="card-title mb-4">Validation Examples</h5>
+                                <form id="pristine-valid-example" novalidate="true" method="post">
+                                    <input type="hidden">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3 has-danger">
+                                                <label>Username</label>
+                                                <input type="text" required="" data-pristine-required-message="Please Enter a username" class="form-control" placeholder="First name" aria-describedby="error-108716405209" aria-invalid="true">
+                                            <div class="pristine-error text-help" id="error-108716405209" role="alert">Please Enter a username</div></div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3 has-danger">
+                                                <label>Email</label>
+                                                <input type="email" required="" data-pristine-required-message="Please Enter a Email" class="form-control" placeholder="Enter your Email" aria-describedby="error-789833788746" aria-invalid="true">
+                                            <div class="pristine-error text-help" id="error-789833788746" role="alert">Please Enter a Email</div></div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3 has-danger">
+                                                <label>Your age (required, min. 14)</label>
+                                                <input type="number" min="14" data-pristine-min-message="You must be at least 14-years-old" required="" class="form-control" value="10" placeholder="Enter your age" aria-describedby="error-361583874862" aria-invalid="true">
+                                            <div class="pristine-error text-help" id="error-361583874862" role="alert">You must be at least 14-years-old</div></div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3 has-danger">
+                                                <label>Password (required)</label>
+                                                <input type="password" id="pwd" required="" data-pristine-required-message="Please Enter a password" data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/" data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number" class="form-control" placeholder="Enter your password" aria-describedby="error-pwd" aria-invalid="true">
+                                            <div class="pristine-error text-help" id="error-pwd" role="alert">Please Enter a password</div></div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3 has-success">
+                                                <label>Retype password</label>
+                                                <input type="password" data-pristine-equals="#pwd" data-pristine-equals-message="Passwords don't match" class="form-control" placeholder="Re-Enter your password">
+                                            <div class="pristine-error text-help" style="display: none;"></div></div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+
+                                    <div class="form-group mb-3 form-check has-danger">
+                                        <input id="term-check01" type="checkbox" class="form-check-input" name="future" required="" data-pristine-required-message="You must accept the terms and conditions" aria-describedby="error-term-check01" aria-invalid="true">
+                                        <label class="form-check-label" for="term-check01">I accept the terms  and conditions</label><br>
+                                    <div class="pristine-error text-help" id="error-term-check01" role="alert">You must accept the terms and conditions</div></div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit form</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+             
+            </div>
+            
+        </div> 
+    </div>
+   
+
+
+   
+</div>
+{% endblock content %}
+{% block javascripts %}{% endblock javascripts %}

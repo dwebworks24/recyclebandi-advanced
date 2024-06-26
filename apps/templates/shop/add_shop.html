@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
-{% block title %} Dashboard|siftech {% endblock title %}
+{% block title %} Add Shop Owner |recycle bandi {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
 
@@ -30,59 +30,108 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <!-- <div class="card-header">
-                            <h4 class="card-title">PristineJS Validation</h4>
-                            <p class="card-title-desc">PristineJS Vanilla javascript form validation library</p>
-                        </div> -->
-                        <!-- end card header -->
-
                         <div class="card-body">
                             <div>
-                                <h5 class="card-title mb-4">Validation Examples</h5>
-                                <form id="pristine-valid-example" novalidate="true" method="post">
+                                <form id="">
                                     <input type="hidden">
                                     <div class="row">
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="form-group mb-3 has-danger">
-                                                <label>Username</label>
-                                                <input type="text" required="" data-pristine-required-message="Please Enter a username" class="form-control" placeholder="First name" aria-describedby="error-108716405209" aria-invalid="true">
-                                            <div class="pristine-error text-help" id="error-108716405209" role="alert">Please Enter a username</div></div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="first_name">Owner First Name</label>
+                                          <input type="text" id="first_name" required data-pristine-required-message="Please Enter shop owner name" class="form-control" placeholder="Please Enter First Name" aria-describedby="error-first_name" aria-invalid="true">
+                                          
                                         </div>
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="form-group mb-3 has-danger">
-                                                <label>Email</label>
-                                                <input type="email" required="" data-pristine-required-message="Please Enter a Email" class="form-control" placeholder="Enter your Email" aria-describedby="error-789833788746" aria-invalid="true">
-                                            <div class="pristine-error text-help" id="error-789833788746" role="alert">Please Enter a Email</div></div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="last_name">Owner Last Name</label>
+                                          <input type="text" id="last_name" required data-pristine-required-message="Please Enter last name" class="form-control" placeholder="Please Enter Last Name" aria-describedby="error-last_name" aria-invalid="true">
+                                          
                                         </div>
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="form-group mb-3 has-danger">
-                                                <label>Your age (required, min. 14)</label>
-                                                <input type="number" min="14" data-pristine-min-message="You must be at least 14-years-old" required="" class="form-control" value="10" placeholder="Enter your age" aria-describedby="error-361583874862" aria-invalid="true">
-                                            <div class="pristine-error text-help" id="error-361583874862" role="alert">You must be at least 14-years-old</div></div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="email">Owner Email</label>
+                                          <input type="email" id="email" required data-pristine-required-message="Please Enter a Email" class="form-control" placeholder="Please Enter Email" aria-describedby="error-email" aria-invalid="true">
+                                         
                                         </div>
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="form-group mb-3 has-danger">
-                                                <label>Password (required)</label>
-                                                <input type="password" id="pwd" required="" data-pristine-required-message="Please Enter a password" data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/" data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number" class="form-control" placeholder="Enter your password" aria-describedby="error-pwd" aria-invalid="true">
-                                            <div class="pristine-error text-help" id="error-pwd" role="alert">Please Enter a password</div></div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="phone">Phone Number</label>
+                                          <input type="tel" id="phone" required data-pristine-required-message="Please Enter phone number" class="form-control" placeholder="Please Enter Phone Number" aria-describedby="error-phone" aria-invalid="true">
+                                         
                                         </div>
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="form-group mb-3 has-success">
-                                                <label>Retype password</label>
-                                                <input type="password" data-pristine-equals="#pwd" data-pristine-equals-message="Passwords don't match" class="form-control" placeholder="Re-Enter your password">
-                                            <div class="pristine-error text-help" style="display: none;"></div></div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="shop_name">Shop Name</label>
+                                          <input type="text" id="shop_name" required data-pristine-required-message="Please Enter shop name" class="form-control" placeholder="Please Enter Shop Name" aria-describedby="error-shop_name" aria-invalid="true">
+                                        
                                         </div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <label for="shop_type" class="form-label">Shop Type</label>
+                                        <select class="form-select" id="shop_type" name="shop_type" aria-label="Shop Type">
+                                          <option selected>Please Select Shop Type</option>
+                                          <option value="panshop">Pan Shop</option>
+                                          <option value="teashop">Tea Shop</option>
+                                          <option value="hospital">Hospital</option>
+                                          <option value="restaurant">Restaurant</option>
+                                        </select>
+                                      </div>
+                                      <!-- <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label class="form-label">RCB Agreement</label><br/>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rcb_agreement" id="agree" value="True" checked>
+                                            <label class="form-check-label" for="agree">Agree</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rcb_agreement" id="not_agree" value="False">
+                                            <label class="form-check-label" for="not_agree">Not Agree</label>
+                                          </div>
+                                        </div>
+                                      </div> -->
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="area">Area</label>
+                                          <input type="text" id="area" required data-pristine-required-message="Please Enter area name" class="form-control" placeholder="Please Enter Area Name" aria-describedby="error-area" aria-invalid="true">
+                                         
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="city">City</label>
+                                          <input type="text" id="city" required data-pristine-required-message="Please Enter city name" class="form-control" placeholder="Please Enter City Name" aria-describedby="error-city" aria-invalid="true">
+                                          
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="state">State</label>
+                                          <input type="text" id="state" required data-pristine-required-message="Please Enter state name" class="form-control" placeholder="Please Enter State Name" aria-describedby="error-state" aria-invalid="true">
+                                         
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="zip_code">Zip Code</label>
+                                          <input type="text" id="zip_code" required data-pristine-required-message="Please Enter zip code" class="form-control" placeholder="Please Enter Zip Code" aria-describedby="error-zip_code" aria-invalid="true">
+                                        
+                                        </div>
+                                      </div>
                                     </div>
-                                    <!-- end row -->
-
                                     <div class="form-group mb-3 form-check has-danger">
-                                        <input id="term-check01" type="checkbox" class="form-check-input" name="future" required="" data-pristine-required-message="You must accept the terms and conditions" aria-describedby="error-term-check01" aria-invalid="true">
-                                        <label class="form-check-label" for="term-check01">I accept the terms  and conditions</label><br>
-                                    <div class="pristine-error text-help" id="error-term-check01" role="alert">You must accept the terms and conditions</div></div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Submit form</button>
+                                      <input id="term-check01" type="checkbox" class="form-check-input" name="terms" required data-pristine-required-message="You must accept the terms and conditions" aria-describedby="error-term-check01" aria-invalid="true">
+                                      <label class="form-check-label" for="term-check01">I accept the terms and conditions</label><br>
+                                     
                                     </div>
-                                </form>
+                                    <div class="form-group">
+                                      <button type="button" class="btn btn-primary" onclick="saveshopowner()">Submit form</button>
+                                    </div>
+                                  </form>
+                                  
                             </div>
                         </div>
                     </div>
@@ -99,4 +148,6 @@
    
 </div>
 {% endblock content %}
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="{% static 'assets/js/shop/add_shop.js' %}"></script>
+{% endblock javascripts %}

@@ -29,11 +29,11 @@ class AdminWasteType(admin.ModelAdmin):
 
 
 class AdminPickupTransaction(admin.ModelAdmin):
-    list_display=('id','pickup_date','shop_owner','lifted_status','total_pointes')
+    list_display=('id','pickup_date','shop_owner','lifted_status',)
 
 
 class AdminPickupWastData(admin.ModelAdmin):
-    list_display=('id','waste_type','quantity','pointes','get_shop_owner')
+    list_display=('id','waste_type','quantity','get_shop_owner')
     def get_shop_owner(self, obj):
         return obj.pickup_transaction.shop_owner
 

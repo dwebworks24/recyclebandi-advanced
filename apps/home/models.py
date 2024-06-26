@@ -119,8 +119,8 @@ class PickupTransaction(models.Model):
     shop_owner = models.ForeignKey('ShopOwner', models.DO_NOTHING, null=False,blank=False,db_column='shop_owner_id')
     given_bags = models.BooleanField(default=True)
     lifted_status = models.BooleanField(default=True)
-    total_pointes = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
     pickup_date = models.DateTimeField(auto_now_add=True)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='created_waste_type',db_column='created_by')
@@ -131,8 +131,9 @@ class PickupTransaction(models.Model):
 
 class PickupWastData(models.Model):
     waste_type = models.ForeignKey('WasteType', models.DO_NOTHING, null=False,blank=False,db_column='waste_type_id')
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.CharField(max_length=255)
-    pointes = models.DecimalField(max_digits=10, decimal_places=2)
+   
     pickup_transaction = models.ForeignKey('PickupTransaction', models.DO_NOTHING, null=False,blank=False,db_column='pickup_transaction_id')
     
     class Meta:

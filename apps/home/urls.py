@@ -14,6 +14,7 @@ urlpatterns = [
     path('save_shop/', controller_logic.shop_owner_save_logic, name='save_shop'),
     path('save_transaction_data/', controller_logic.save_new_transaction_data, name='save_transaction_data'),
 
+    path('get_materials_list/<int:material_id>/', controller_logic.get_materials_list, name='get_materials_list'),
 
 
 ]

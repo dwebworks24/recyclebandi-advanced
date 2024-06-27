@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="main-content">
-
+    {% include "transaction/meterials_list.html" %}
     <div class="page-content">
         <div class="container-fluid">
 
@@ -42,47 +42,61 @@
                                                     <th class="sorting sorting_asc" tabindex="0"
                                                         aria-controls="datatable-buttons" rowspan="1" colspan="1"
                                                         style="width: 172.333px;" aria-sort="ascending"
-                                                        aria-label="Owner Name: activate to sort column descending">Owner Name</th>
+                                                        aria-label="Transaction Id: activate to sort column descending">
+                                                        Transaction Id</th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 258.333px;"
                                                         aria-label=" Phone Number: activate to sort column ascending">
-                                                        Phone Number</th>
+                                                        Pickup Date</th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 124.333px;"
-                                                        aria-label="Shop Name: activate to sort column ascending">Shop Name
+                                                        aria-label="Shop Name: activate to sort column ascending">Shop
+                                                        Name
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 58.3333px;"
-                                                        aria-label="Area: activate to sort column ascending">Area</th>
+                                                        aria-label="Phone: activate to sort column ascending">Phone</th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 118.333px;"
-                                                        aria-label="City: activate to sort column ascending">City
-                                                        </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                                        rowspan="1" colspan="1" style="width: 106.333px;"
-                                                        aria-label="State: activate to sort column ascending">State
+                                                        aria-label="Total Amount: activate to sort column ascending">
+                                                        Total Amount
                                                     </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
+                                                        rowspan="1" colspan="1" style="width: 118.333px;"
+                                                        aria-label="Meterial: activate to sort column ascending">
+                                                        Meterials List
+                                                    </th>
+
                                                     <th style="width: 106.333px;">Action</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                {% for item in shop %}
+                                                {% for item in transaction %}
                                                 <tr class="odd">
-                                                    <td class="dtr-control sorting_1" tabindex="0">{{item.user}}</td>
-                                                    <td>{{item.user.phone}}</td>
-                                                    <td>{{item.shop_name}}</td>
-                                                    <td>{{item.area}}</td>
-                                                    <td>{{item.city}}</td>
-                                                    <td>{{item.state}}</td> 
+                                                    <td class="dtr-control sorting_1" tabindex="0">{{item.id}}</td>
+                                                    <td>{{item.pickup_date}}</td>
+                                                    <td>{{item.shop_owner}}</td>
+                                                    <td>{{item.created_by.phone}}</td>
+                                                    <td>{{item.total_amount}}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-light waves-effect"
+                                                            data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg" data-material_id="${{item.id}}" 
+                                                            onclick="fetchDataAndPopulateTable('{{ item.id }}')">
+                                                            <i
+                                                                class="mdi mdi mdi-format-list-bulleted font-size-16 align-middle me-1"></i>Meterial
+                                                            List</button>
+
+                                                    </td>
                                                     <td>
                                                         <a href="/{{item.id}}/">
-                                                        <i class="mdi mdi mdi-pencil font-size-16 align-middle me-1"></i>
-                                                    </a>
-                                                </td>
+                                                            <i
+                                                                class="mdi mdi mdi-pencil font-size-16 align-middle me-1"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 {% endfor %}
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -90,16 +104,16 @@
                             </div>
                         </div>
                     </div>
-                    <!-- end cardaa -->
-                </div> <!-- end col -->
+                </div> 
             </div>
-             <!-- end row -->
-        </div> 
+        </div>
     </div>
-    <!-- End Page-content -->
-
-
    
+
+
+
 </div>
 {% endblock content %}
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="{% static 'assets/js/transaction/add_transaction.js' %}"></script>
+{% endblock javascripts %}

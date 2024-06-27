@@ -90,7 +90,7 @@ def add_shop(request):
 def transaction_list(request):
     context ={'segment': 'transaction_list'}
     try:
-        # context['shop'] = ShopOwner.objects.all()
+        context['transaction'] = PickupTransaction.objects.all()
         html_template = loader.get_template('transaction/transaction_list.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:

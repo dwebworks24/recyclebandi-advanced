@@ -133,7 +133,6 @@ class PickupWastData(models.Model):
     waste_type = models.ForeignKey('WasteType', models.DO_NOTHING, null=False,blank=False,db_column='waste_type_id')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.CharField(max_length=255)
-   
     pickup_transaction = models.ForeignKey('PickupTransaction', models.DO_NOTHING, null=False,blank=False,db_column='pickup_transaction_id')
     
     class Meta:

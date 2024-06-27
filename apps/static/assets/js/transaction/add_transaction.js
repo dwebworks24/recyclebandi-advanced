@@ -121,3 +121,46 @@ function save_trnscation(){
     })
   
   }
+
+
+
+  function fetchDataAndPopulateTable(id) {
+    const material_id = id;
+    $.ajax({
+        url: '/get_materials_list/' + material_id + '/',
+        method: 'GET',
+        success: function(response) {
+            // Debug: Log the response to the console
+            console.log(response);
+
+            
+            if (response.materials && Array.isArray(response.materials)) {
+
+                $('#materialtable tbody').empty();
+
+                // Populate the table with the new data
+                response.materials.forEach(function(item) {
+                    let row = '<tr data-id="1" style="cursor: pointer;">' +
+                                '<td data-field="item.id" style="width: 107.26px;">' + item.id + '</td>' +
+                                '<td data-field="id" style="width: 107.26px;">' + item.waste_type__wastename + '</td>' +
+                                '<td data-field="name" style="width: 417.708px;">' + item.price + '</td>' +
+                                '<td data-field="age" style="width: 167.438px;">' + item.quantity + '</td>' +
+                                '<td data-field="gender" style="width: 184.385px;">' +'₹'+ (item.price * item.quantity)+ '</td>' +
+                                '<td style="width: 100px">' +
+                                    '<a class="btn btn-outline-secondary btn-sm edit" title="Edit">' +
+                                        '<i class="fas fa-pencil-alt" title="Edit"></i>' +
+                                    '</a>' +
+                                '</td>' +
+                              '</tr>';
+                    $('#materialtable tbody').append(row);
+                });
+             
+            } else {
+                console.error('Invalid response format:', response);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+}

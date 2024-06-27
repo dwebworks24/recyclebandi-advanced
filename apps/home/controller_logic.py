@@ -118,3 +118,9 @@ def save_new_transaction_data(request):
             return JsonResponse({'error': str(e)}, status=401)
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+@csrf_exempt   
+def get_materials_list(request,material_id):
+    materials = PickupWastData.objects.filter(pickup_transaction_id=material_id).values('id','waste_type__wastename', 'price', 'quantity',)
+    return JsonResponse({'materials': list(materials)})

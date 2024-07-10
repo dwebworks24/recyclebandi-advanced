@@ -126,6 +126,7 @@ class PickupTransaction(models.Model):
     lifted_status = models.BooleanField(default=True)
     pickup_date = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
+    transaction_amount = models.DecimalField(max_digits=10,default= 0.0, decimal_places=2,null=True,blank=True)
     paid_amount = models.DecimalField(max_digits=10, default=0.0 ,decimal_places=2,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

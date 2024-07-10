@@ -10,7 +10,7 @@ from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
-
+from decimal import Decimal
 @csrf_exempt
 @login_required
 def shop_owner_save_logic(request):
@@ -86,7 +86,10 @@ def save_new_transaction_data(request):
        
             shop_owner = ShopOwner.objects.filter(id=owner_id).first()
             cluster_aera = Clusteraera.objects.filter(id=cluster_aera_id).first()
-            
+            if not paid_amount:
+                paid_amount = 0.0
+            else:
+                paid_amount = float(paid_amount)
             
     
             pickup_transaction = PickupTransaction.objects.create(
@@ -99,7 +102,7 @@ def save_new_transaction_data(request):
             )
             pickup_transaction.save()
 
-            total_price = 0
+            transaction_amount = 0
             index = 0
             while f'wasteData[{index}][wasteType]' in request.POST:
                 waste_type_id = request.POST.get(f'wasteData[{index}][wasteType]')
@@ -114,15 +117,25 @@ def save_new_transaction_data(request):
                         price=price,  
                         pickup_transaction=pickup_transaction
                     )
+                
                 tot_amount = int(price)*int(quantity)
-                total_price += tot_amount
+                transaction_amount += tot_amount
                 new_pickup_waste_data.save()
                 index += 1
+            
+            transaction_bal = transaction_amount - float(paid_amount)
+            shop_id = pickup_transaction.shop_owner_id
+            pre_tra = PickupTransaction.objects.filter(shop_owner_id = shop_id).order_by('-id')[1]
 
-            pickup_transaction.total_amount = total_price
+            total_amount = pre_tra.total_amount if pre_tra.total_amount is not None else Decimal('0.0')
+            transaction_bal_decimal = Decimal(transaction_bal)
+            balance = total_amount + transaction_bal_decimal
+
+            pickup_transaction.transaction_amount = transaction_amount
+            pickup_transaction.total_amount = balance
             pickup_transaction.save()
 
-            return JsonResponse({'message': 'successfully add new transaction','path': '/'}, status=200)
+            return JsonResponse({'message': 'successfully add new transaction','path': '/transaction_list/'}, status=200)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=401)
     else:

@@ -53,10 +53,16 @@
                                                         aria-label="Shop Name: activate to sort column ascending">Shop
                                                         Name
                                                     </th>
+
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 58.3333px;"
                                                         aria-label="Phone: activate to sort column ascending">Phone</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
+                                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
+                                                        rowspan="1" colspan="1" style="width: 118.333px;"
+                                                        aria-label="Total Amount: activate to sort column ascending">
+                                                        Amount
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 118.333px;"
                                                         aria-label="Padi Amount: activate to sort column ascending">
                                                         Paid Amount
@@ -64,7 +70,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 118.333px;"
                                                         aria-label="Total Amount: activate to sort column ascending">
-                                                        Total Amount
+                                                        Total Balance
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 118.333px;"
@@ -81,13 +87,17 @@
                                                 <tr class="odd">
                                                     <td class="dtr-control sorting_1" tabindex="0">{{item.id}}</td>
                                                     <td>{{item.pickup_date}}</td>
-                                                    <td>{{item.shop_owner}}</td>
+                                                    <td>{{item.shop_owner.shop_name}}</td>
                                                     <td>{{item.created_by.phone}}</td>
-                                                    <td  class="{% if item.paid_amount < 1 %}text-danger{% else %}text-success{% endif %}">{{item.paid_amount}}</td>
-                                                    <td>{{item.total_amount}}</td>
+                                                    <td>₹ {{item.transaction_amount}}</td>
+                                                    <td
+                                                        class="{% if item.paid_amount < 1 %}text-danger{% else %}text-success{% endif %}">
+                                                        ₹ {{item.paid_amount}}</td>
+                                                    <td>₹ {{item.total_amount}}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-light waves-effect"
-                                                            data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg" data-material_id="${{item.id}}" 
+                                                            data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg"
+                                                            data-material_id="${{item.id}}"
                                                             onclick="fetchDataAndPopulateTable('{{ item.id }}')">
                                                             <i
                                                                 class="mdi mdi mdi-format-list-bulleted font-size-16 align-middle me-1"></i>Meterial
@@ -110,11 +120,11 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
-   
+
 
 
 

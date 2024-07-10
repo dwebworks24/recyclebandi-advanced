@@ -44,7 +44,19 @@
                                 <form id="transaction">
                                     <input type="hidden" name="waste_obj" id="waste_obj" value="{{waste_obj_json}}">
                                     <div class="row">
-                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="first_name">Cluster Aera</label>
+                                          <select class="form-select form-control" id="Select2" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            {% for item in owners %}
+                                            <option value="{{item.id}}">{{item.user.first_name}}|{{item.shop_name}}</option>
+                                            {% endfor %}
+                                          </select>
+                                          
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="first_name">Shop Owner</label>
                                           <select class="form-select form-control" id="Select2" aria-label="Default select example">
@@ -56,7 +68,7 @@
                                           
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
                                         <div class="form-group mb-3 has-danger given_bags">
                                             <label for="shop_name" class="form-label">Given Bags</label><br />
                                             <label class="form-check-label" for="gridRadios2">YES</label>
@@ -67,7 +79,7 @@
                                           
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3 lifted">
+                                      <div class="col-sm-12 col-md-6 col-lg-3 mb-3 lifted">
                                         <div class="form-group mb-3 has-danger">
                                             <label for="shop_name" class="form-label">Lifted status</label><br />
                                             <label class="form-check-label" for="gridRadios3">YES</label>

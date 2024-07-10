@@ -35,42 +35,54 @@
                                 <form id="">
                                     <input type="hidden">
                                     <div class="row">
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+                                        <div class="form-group mb-3 has-danger">
+                                          <label for="first_name">Shop Owner</label>
+                                          <select class="form-select form-control" id="Select2" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            {% for item in owners %}
+                                            <option value="{{item.id}}">{{item.user.first_name}}|{{item.shop_name}}</option>
+                                            {% endfor %}
+                                          </select>
+                                          
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="first_name">Owner First Name</label>
                                           <input type="text" id="first_name" required data-pristine-required-message="Please Enter shop owner name" class="form-control" placeholder="Please Enter First Name" aria-describedby="error-first_name" aria-invalid="true">
                                           
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="last_name">Owner Last Name</label>
                                           <input type="text" id="last_name" required data-pristine-required-message="Please Enter last name" class="form-control" placeholder="Please Enter Last Name" aria-describedby="error-last_name" aria-invalid="true">
                                           
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="email">Owner Email</label>
                                           <input type="email" id="email" required data-pristine-required-message="Please Enter a Email" class="form-control" placeholder="Please Enter Email" aria-describedby="error-email" aria-invalid="true">
                                          
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="phone">Phone Number</label>
                                           <input type="tel" id="phone" required data-pristine-required-message="Please Enter phone number" class="form-control" placeholder="Please Enter Phone Number" aria-describedby="error-phone" aria-invalid="true">
                                          
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="shop_name">Shop Name</label>
                                           <input type="text" id="shop_name" required data-pristine-required-message="Please Enter shop name" class="form-control" placeholder="Please Enter Shop Name" aria-describedby="error-shop_name" aria-invalid="true">
                                         
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <label for="shop_type" class="form-label">Shop Type</label>
                                         <select class="form-select" id="shop_type" name="shop_type" aria-label="Shop Type">
                                           <option selected>Please Select Shop Type</option>
@@ -93,28 +105,28 @@
                                           </div>
                                         </div>
                                       </div> -->
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="area">Area</label>
                                           <input type="text" id="area" required data-pristine-required-message="Please Enter area name" class="form-control" placeholder="Please Enter Area Name" aria-describedby="error-area" aria-invalid="true">
                                          
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="city">City</label>
                                           <input type="text" id="city" required data-pristine-required-message="Please Enter city name" class="form-control" placeholder="Please Enter City Name" aria-describedby="error-city" aria-invalid="true">
                                           
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="state">State</label>
                                           <input type="text" id="state" required data-pristine-required-message="Please Enter state name" class="form-control" placeholder="Please Enter State Name" aria-describedby="error-state" aria-invalid="true">
                                          
                                         </div>
                                       </div>
-                                      <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                                      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
                                           <label for="zip_code">Zip Code</label>
                                           <input type="text" id="zip_code" required data-pristine-required-message="Please Enter zip code" class="form-control" placeholder="Please Enter Zip Code" aria-describedby="error-zip_code" aria-invalid="true">

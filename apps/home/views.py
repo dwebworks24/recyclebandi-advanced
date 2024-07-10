@@ -32,11 +32,15 @@ def datatables(request):
     except:
         html_template = loader.get_template('uifiles/page-500.html')
         return HttpResponse(html_template.render(request))
-
-def cluster_datatables(request):
+    
+@login_required(login_url="/login/")
+def cluster_dashboard(request):
     context ={'segment': 'cluster'}
     try:
-        html_template = loader.get_template('home/data-tables.html')
+        logged_in_user = request.user
+        context['transaction'] = PickupTransaction.objects.filter(shop_owner__user= logged_in_user)
+
+        html_template = loader.get_template('home/cluster-dashboard.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
         html_template = loader.get_template('uifiles/page-404.html')

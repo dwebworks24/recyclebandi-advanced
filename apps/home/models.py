@@ -69,7 +69,11 @@ class Users(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True
 
-
+class clusteraera(models.Model):
+    cluster_aera = models.CharField(max_length=255, null=True,blank=True,default='')
+    class Meta:
+        managed = True
+        db_table = 'cluster_aera'
 
 shop_type = (
         ('panshop', 'pan shop'),
@@ -87,6 +91,7 @@ class ShopOwner(models.Model):
     state = models.CharField(max_length=255)
     points = models.DecimalField(max_digits=10, decimal_places=2,default='0')
     rcb_agreed = models.BooleanField(default=True)
+    cluser_aera = models.ForeignKey('clusteraera', models.DO_NOTHING,null=False,blank=False,related_name='cluster',db_column='cluster_aera')
     created_by = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='created_owner',db_column='created_by')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -138,3 +143,4 @@ class PickupWastData(models.Model):
     class Meta:
         managed = True
         db_table = 'pickup_waste_data'
+

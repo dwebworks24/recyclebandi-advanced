@@ -6,20 +6,20 @@
             <div class="navbar-brand-box">
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{% static 'assets/images/logo-sm.svg' %}" alt="" height="24">
+                        <img src="{% static 'assets/images/logo.png' %}" alt="" height="24">
                     </span>
-                    <span class="logo-lg">
-                        <img src="{% static 'assets/images/logo-sm.svg' %}" alt="" height="24"> <span
-                            class="logo-txt">Minia</span>
+                    <span class="logo-lg mt-3">
+                        <img src="{% static 'assets/images/logo.png' %}" alt="" height="80"> <span
+                            class="logo-txt "></span>
                     </span>
                 </a>
 
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{% static 'assets/images/logo-sm.svg' %}" alt="" height="24">
+                        <img src="{% static 'assets/images/logo.png' %}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="{% static 'assets/images/logo-sm.svg' %}" alt="" height="24"> <span
+                        <img src="{% static 'assets/images/logo.png' %}" alt="" height="24"> <span
                             class="logo-txt">Minia</span>
                     </span>
                 </a>
@@ -227,7 +227,9 @@
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user"
                         src="{% static 'assets/images/users/avatar-1.jpg' %}" alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
+                        {% if user.is_authenticated  %}
+                    <span class="d-none d-xl-inline-block ms-1 fw-medium">{{user.username}}</span>
+                    {% endif %}
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">

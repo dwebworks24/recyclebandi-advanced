@@ -57,10 +57,10 @@ def mobial_otp_verify_logic(request):
                     
             elif user.role == "employee":
                 print("employee")
-                return JsonResponse({'path': '/dashboard/'},status=status.HTTP_200_OK)
+                return JsonResponse({'path': '/employee_datatables/'},status=status.HTTP_200_OK)
             else:
                 print("cluster")
-                return JsonResponse({'path': '/dashboard/'},status=status.HTTP_200_OK)
+                return JsonResponse({'path': '/cluster_dashboard/'},status=status.HTTP_200_OK)
         return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return JsonResponse({'error': f'{e}'}, status=401)

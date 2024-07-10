@@ -3,9 +3,12 @@ from apps.home import views
 from apps.home import controller_logic
 
 urlpatterns = [
-    path('dashboard/', views.cluster_datatables, name='dashboard'),
+    # path('dashboard/', views.cluster_datatables, name='dashboard'),
+    # path('cluster_datatables/', views.datatables, name='cluster_datatables'),
+    
     path('employee_datatables/', views.datatables, name='employee_datatables'),
-    path('cluster_datatables/', views.datatables, name='cluster_datatables'),
+    path('cluster_dashboard/', views.cluster_dashboard, name='cluster-dashboard'),
+
     path('addshop/', views.add_shop, name='addshop'),
     path('shop_list/', views.shop_list, name='shop_list'),
     path('add_transaction/', views.add_new_transaction_shop, name='add_transaction'),

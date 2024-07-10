@@ -38,7 +38,7 @@ def cluster_dashboard(request):
     context ={'segment': 'cluster'}
     try:
         logged_in_user = request.user
-        context['transaction'] = PickupTransaction.objects.filter(shop_owner__user= logged_in_user)
+        context['transaction'] = PickupTransaction.objects.filter(shop_owner__user= logged_in_user).order_by('-id')
         context['blance'] = PickupTransaction.objects.filter(shop_owner__user= logged_in_user).last()
 
         html_template = loader.get_template('home/cluster-dashboard.html')

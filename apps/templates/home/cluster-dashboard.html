@@ -40,9 +40,9 @@
                                             aria-describedby="datatable-buttons_info" style="width: 1094px;">
                                             <thead>
                                                 <tr>
-                                                    <th class="sorting sorting_asc" tabindex="0"
+                                                    <th class="sorting sorting_desc" tabindex="0"
                                                         aria-controls="datatable-buttons" rowspan="1" colspan="1"
-                                                        style="width: 172.333px;" aria-sort="ascending"
+                                                        style="width: 172.333px;" aria-sort="descending"
                                                         aria-label="Transaction Id: activate to sort column descending">
                                                         Transaction Id</th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
@@ -85,7 +85,7 @@
                                             <tbody>
                                                 {% for item in transaction %}
                                                 <tr class="odd">
-                                                    <td class="dtr-control sorting_1" tabindex="0">{{item.id}}</td>
+                                                    <td class="dtr-control sorting_1" >{{item.id}}</td>
                                                     <td>{{item.pickup_date}}</td>
                                                     <!-- <td>{{item.shop_owner.shop_name}}</td>
                                                     <td>{{item.created_by.phone}}</td> -->

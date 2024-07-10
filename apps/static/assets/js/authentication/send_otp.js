@@ -17,6 +17,7 @@ function sendOTP(){
         
       },
       error: function(response){
+        x= 'error'
         show_error(response.responseJSON['error'])
       }
     })

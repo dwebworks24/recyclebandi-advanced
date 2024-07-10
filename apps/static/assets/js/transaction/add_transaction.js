@@ -1,10 +1,35 @@
 $(document).ready(function() {
     // Initialize Select2 on the select element
     $('#Select2').select2();
+    $('#cluster_aera').select2();
     $('#waste_type_select2').select2();
    
   });
 
+
+  function cluster_aera_shop_list(){
+    var clusterAreaId =  $("#cluster_aera :selected").val();
+    $.ajax({
+        url: '/get_shop_list/',
+        data: {
+            'cluster_area_id': clusterAreaId
+        },
+        success: function (response) {
+          $('#Select2').html(null);
+          let $option = `<option value="">All</option>`;
+          let shops = JSON.parse(response['shops']);  // Parse the JSON string
+
+          $.each(shops, function(index, value){
+              $option += `<option value="${value.pk}">${value.fields.user} | ${value.fields.shop_name}</option>`;
+          });
+          $('#Select2').html($option);
+          $('#Select2').select2({width: '100%'});
+      },
+      error: function(response){
+        show_error(response.responseJSON['message']);
+    }
+    });
+  }
   
 var counter = 2;
 function addProductField() {
@@ -70,7 +95,9 @@ function removeProductField(rowId) {
 
 
 function save_trnscation(){
+    const cluster_aera = $("#cluster_aera :selected").val();
     const owner = $("#Select2 :selected").val();
+    const paid_amount = $("#paid_amount").val();
     const given_bags = $('input[name="gridRadios"]:checked').val();
     const lifted_status = $('input[name="gridRadios1"]:checked').val();
     const waste_type = $("#waste_type_select2 :selected").val();
@@ -105,6 +132,8 @@ function save_trnscation(){
       method: 'POST',
       data: {
         'owner':owner,
+        'cluster_aera':cluster_aera,
+        'paid_amount':paid_amount,
         'given_bags':given_bags,
         'lifted_status':lifted_status,
         'wasteData':wasteData
@@ -146,11 +175,11 @@ function save_trnscation(){
                                 '<td data-field="name" style="width: 417.708px;">' + item.price + '</td>' +
                                 '<td data-field="age" style="width: 167.438px;">' + item.quantity + '</td>' +
                                 '<td data-field="gender" style="width: 184.385px;">' +'₹'+ (item.price * item.quantity)+ '</td>' +
-                                '<td style="width: 100px">' +
-                                    '<a class="btn btn-outline-secondary btn-sm edit" title="Edit">' +
-                                        '<i class="fas fa-pencil-alt" title="Edit"></i>' +
-                                    '</a>' +
-                                '</td>' +
+                                // '<td style="width: 100px">' +
+                                //     '<a class="btn btn-outline-secondary btn-sm edit" title="Edit">' +
+                                //         '<i class="fas fa-pencil-alt" title="Edit"></i>' +
+                                //     '</a>' +
+                                // '</td>' +
                               '</tr>';
                     $('#materialtable tbody').append(row);
                 });

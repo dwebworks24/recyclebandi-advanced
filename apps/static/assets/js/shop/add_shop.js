@@ -1,4 +1,5 @@
 function saveshopowner(){
+    const clusteraera = $("#clusteraera").val();
     const first_name = $("#first_name").val();
     const last_name = $("#last_name").val();
     const email = $("#email").val();
@@ -16,6 +17,7 @@ function saveshopowner(){
         url: '/save_shop/',
         method: 'POST',
         data: {
+          'clusteraera':clusteraera,
           'first_name':first_name,
           'last_name':last_name,
           'email':email,
@@ -37,3 +39,10 @@ function saveshopowner(){
         }
       })
   }
+
+
+  $(document).ready(function() {
+    // Initialize Select2 on the select element
+    $('#clusteraera').select2();
+   
+  });  

@@ -69,7 +69,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True
 
-class clusteraera(models.Model):
+class Clusteraera(models.Model):
     cluster_aera = models.CharField(max_length=255, null=True,blank=True,default='')
     class Meta:
         managed = True
@@ -91,7 +91,7 @@ class ShopOwner(models.Model):
     state = models.CharField(max_length=255)
     points = models.DecimalField(max_digits=10, decimal_places=2,default='0')
     rcb_agreed = models.BooleanField(default=True)
-    cluser_aera = models.ForeignKey('clusteraera', models.DO_NOTHING,null=False,blank=False,related_name='cluster',db_column='cluster_aera')
+    cluser_aera = models.ForeignKey('Clusteraera', models.DO_NOTHING,null=False,blank=False,related_name='cluster',db_column='cluster_aera')
     created_by = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='created_owner',db_column='created_by')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -126,8 +126,10 @@ class PickupTransaction(models.Model):
     lifted_status = models.BooleanField(default=True)
     pickup_date = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
+    paid_amount = models.DecimalField(max_digits=10, default=0.0 ,decimal_places=2,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    cluser_aera = models.ForeignKey('Clusteraera', models.DO_NOTHING, null=False,blank=False,related_name='cluster_transaction',db_column='cluster_aera')
     created_by = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='created_waste_type',db_column='created_by')
 
     class Meta:

@@ -61,13 +61,13 @@
                                                         aria-label="Total Amount: activate to sort column ascending">
                                                         Total Amount
                                                     </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 118.333px;"
                                                         aria-label="Meterial: activate to sort column ascending">
                                                         Meterials List
-                                                    </th>
+                                                    </th> -->
 
-                                                    <th style="width: 106.333px;">Action</th>
+                                            
                                                 </tr>
                                             </thead>
 
@@ -79,21 +79,21 @@
                                                     <td>{{item.shop_owner}}</td>
                                                     <td>{{item.created_by.phone}}</td>
                                                     <td>{{item.total_amount}}</td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <button type="button" class="btn btn-light waves-effect"
                                                             data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg" data-material_id="${{item.id}}" 
                                                             onclick="fetchDataAndPopulateTable('{{ item.id }}')">
                                                             <i
                                                                 class="mdi mdi mdi-format-list-bulleted font-size-16 align-middle me-1"></i>Meterial
-                                                            List</button>
+                                                            List</button> -->
 
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <a href="/{{item.id}}/">
                                                             <i
                                                                 class="mdi mdi mdi-pencil font-size-16 align-middle me-1"></i>
                                                         </a>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 {% endfor %}
 

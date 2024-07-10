@@ -18,6 +18,6 @@ urlpatterns = [
     path('save_transaction_data/', controller_logic.save_new_transaction_data, name='save_transaction_data'),
 
     path('get_materials_list/<int:material_id>/', controller_logic.get_materials_list, name='get_materials_list'),
-
-
+    
+    path('get_shop_list/', controller_logic.get_area_based_shops, name='get_shop_list'),
 ]

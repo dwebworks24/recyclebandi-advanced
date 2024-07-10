@@ -37,11 +37,11 @@
                                     <div class="row">
                                       <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <div class="form-group mb-3 has-danger">
-                                          <label for="first_name">Shop Owner</label>
-                                          <select class="form-select form-control" id="Select2" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            {% for item in owners %}
-                                            <option value="{{item.id}}">{{item.user.first_name}}|{{item.shop_name}}</option>
+                                          <label for="first_name">Cluster Aera</label>
+                                          <select class="form-select form-control" id="clusteraera" aria-label="Default select example">
+                                            <option selected>select cluster aera</option>
+                                            {% for item in clusteraera %}
+                                            <option value="{{item.id}}">{{item.cluster_aera}}</option>
                                             {% endfor %}
                                           </select>
                                           

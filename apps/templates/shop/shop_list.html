@@ -62,7 +62,10 @@
                                                         rowspan="1" colspan="1" style="width: 106.333px;"
                                                         aria-label="State: activate to sort column ascending">State
                                                     </th>
-                                                    <th style="width: 106.333px;">Action</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
+                                                    rowspan="1" colspan="1" style="width: 106.333px;"
+                                                    aria-label="Cluster Aera: activate to sort column ascending">Cluster Aera
+                                                </th>
                                                 </tr>
                                             </thead>
 
@@ -75,11 +78,7 @@
                                                     <td>{{item.area}}</td>
                                                     <td>{{item.city}}</td>
                                                     <td>{{item.state}}</td> 
-                                                    <td>
-                                                        <a href="/{{item.id}}/">
-                                                        <i class="mdi mdi mdi-pencil font-size-16 align-middle me-1"></i>
-                                                    </a>
-                                                </td>
+                                                    <td>{{item.cluser_aera.cluster_aera}}</td>
                                                 </tr>
                                                 {% endfor %}
                                                 

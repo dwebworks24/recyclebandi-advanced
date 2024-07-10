@@ -56,6 +56,11 @@
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 58.3333px;"
                                                         aria-label="Phone: activate to sort column ascending">Phone</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
+                                                        rowspan="1" colspan="1" style="width: 118.333px;"
+                                                        aria-label="Padi Amount: activate to sort column ascending">
+                                                        Paid Amount
+                                                    </th>
                                                     <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                         rowspan="1" colspan="1" style="width: 118.333px;"
                                                         aria-label="Total Amount: activate to sort column ascending">
@@ -67,7 +72,7 @@
                                                         Meterials List
                                                     </th>
 
-                                                    <th style="width: 106.333px;">Action</th>
+                                                    <!-- <th style="width: 106.333px;">Action</th> -->
                                                 </tr>
                                             </thead>
 
@@ -78,6 +83,7 @@
                                                     <td>{{item.pickup_date}}</td>
                                                     <td>{{item.shop_owner}}</td>
                                                     <td>{{item.created_by.phone}}</td>
+                                                    <td  class="{% if item.paid_amount < 1 %}text-danger{% else %}text-success{% endif %}">{{item.paid_amount}}</td>
                                                     <td>{{item.total_amount}}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-light waves-effect"
@@ -88,12 +94,12 @@
                                                             List</button>
 
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <a href="/{{item.id}}/">
                                                             <i
                                                                 class="mdi mdi mdi-pencil font-size-16 align-middle me-1"></i>
                                                         </a>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 {% endfor %}
 

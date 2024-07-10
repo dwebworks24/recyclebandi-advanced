@@ -9,7 +9,7 @@ from .utilis import *
 from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-
+from django.core import serializers
 
 @csrf_exempt
 @login_required
@@ -17,6 +17,7 @@ def shop_owner_save_logic(request):
     if request.method == 'POST':
         try:
             # Extract form data
+            clusteraera = request.POST['clusteraera']
             first_name = request.POST['first_name']
             last_name = request.POST['last_name']
             email = request.POST['email']
@@ -29,7 +30,7 @@ def shop_owner_save_logic(request):
             state = request.POST['state']
             zip_code = request.POST['zip_code']
 
-            
+            cluster  = Clusteraera.objects.filter(id= clusteraera).first()
             if len(first_name) < 2:
                 return JsonResponse({'error': 'First name must be at least 2 characters long.'}, status=400)
             if len(phone) < 10:
@@ -50,6 +51,7 @@ def shop_owner_save_logic(request):
             shop_owner = ShopOwner()
             shop_owner.shopowner_number = generate_shop_number()
             shop_owner.user = user
+            shop_owner.cluser_aera=cluster
             shop_owner.shop_name=shop_name
             shop_owner.shop_type =shop_type
             shop_owner.rcb_agreement=bool(rcb_agreement)
@@ -75,15 +77,22 @@ def shop_owner_save_logic(request):
 def save_new_transaction_data(request):
     if request.method == 'POST':
         try:
+            cluster_aera_id = request.POST.get('cluster_aera')
             owner_id = request.POST.get('owner')
+            paid_amount = request.POST.get('paid_amount')
             given_bags = request.POST.get('given_bags') == 'yes'
             lifted_status = request.POST.get('lifted_status') == 'yes'
         
        
             shop_owner = ShopOwner.objects.filter(id=owner_id).first()
+            cluster_aera = Clusteraera.objects.filter(id=cluster_aera_id).first()
+            
+            
     
             pickup_transaction = PickupTransaction.objects.create(
                 shop_owner=shop_owner,
+                cluser_aera = cluster_aera,
+                paid_amount= float(paid_amount),
                 given_bags=given_bags,
                 lifted_status=lifted_status,
                 created_by=request.user
@@ -124,3 +133,19 @@ def save_new_transaction_data(request):
 def get_materials_list(request,material_id):
     materials = PickupWastData.objects.filter(pickup_transaction_id=material_id).values('id','waste_type__wastename', 'price', 'quantity',)
     return JsonResponse({'materials': list(materials)})
+
+
+@csrf_exempt  
+def get_area_based_shops(request):
+    try:
+        post_data = request.POST
+        cluster_area_id = request.GET.get('cluster_area_id')
+        if cluster_area_id != '':
+            shops = ShopOwner.objects.filter(cluser_aera =cluster_area_id)
+            shops_json = serializers.serialize('json', shops)
+            return JsonResponse({'shops': shops_json}, safe=False)
+        else:
+            shops = ShopOwner.objects.none()
+        return JsonResponse({'shop': shops})
+    except Exception as e:
+        return JsonResponse({'message': f'{e}'}, status=401)

@@ -6,31 +6,32 @@ from django.urls import reverse
 from .models import * 
 from django.core.serializers import serialize
 # Create your views here.
-# @login_required(login_url="/login/")
+
+@login_required(login_url="/login/")
 def index(request):
     context ={'segment': 'index'}
     try:
         html_template = loader.get_template('home/dashboard.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))
 
 
-
+@login_required(login_url="/login/")
 def datatables(request):
     context ={'segment': 'employee'}
     try:
         html_template = loader.get_template('home/data-tables.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))
     
 @login_required(login_url="/login/")
@@ -44,27 +45,27 @@ def cluster_dashboard(request):
         html_template = loader.get_template('home/cluster-dashboard.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))
     
     
-# @login_required(login_url="/login/")
+@login_required(login_url="/login/")
 def employee_datatables(request):
     context ={'segment': 'employee'}
     try:
         html_template = loader.get_template('home/data-tables.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))
     
-# @login_required(login_url="/login/")
+@login_required(login_url="/login/")
 def shop_list(request):
     context ={'segment': 'employee'}
     try:
@@ -72,12 +73,13 @@ def shop_list(request):
         html_template = loader.get_template('shop/shop_list.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))
-    
+
+@login_required(login_url="/login/")    
 def add_shop(request):
     context ={'segment': 'employee'}
     try:
@@ -85,14 +87,14 @@ def add_shop(request):
         html_template = loader.get_template('shop/add_shop.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))
     
 
-# @login_required(login_url="/login/")
+@login_required(login_url="/login/")
 def transaction_list(request):
     context ={'segment': 'transaction_list'}
     try:
@@ -100,13 +102,13 @@ def transaction_list(request):
         html_template = loader.get_template('transaction/transaction_list.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))
 
-
+@login_required(login_url="/login/")
 def add_new_transaction_shop(request):
     context ={'segment': 'add_transaction'}
     try:
@@ -120,8 +122,8 @@ def add_new_transaction_shop(request):
         html_template = loader.get_template('transaction/new_transaction.html')
         return HttpResponse(html_template.render(context, request))
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('uifiles/page-404.html')
+        html_template = loader.get_template('errorpages/page-404.html')
         return HttpResponse(html_template.render(request))
     except:
-        html_template = loader.get_template('uifiles/page-500.html')
+        html_template = loader.get_template('errorpages/page-500.html')
         return HttpResponse(html_template.render(request))

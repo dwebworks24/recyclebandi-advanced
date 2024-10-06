@@ -31,62 +31,93 @@ $(document).ready(function() {
     });
   }
   
-var counter = 2;
-function addProductField() {
-  var waste_obj = $('#waste_obj').val()
-  var waste_list = JSON.parse(waste_obj);
-  var container = document.getElementById("dynamicFieldsContainer");
-  var newRow = document.createElement("div");
-  newRow.className = "row mt-3";
-  newRow.id = "row_" + counter;
-  var materialId = "wast_id_" + counter;
-  var materialPrice = "price_" + counter;
-  var materialPercentage = "quantity_" + counter;
+  var counter = 2;
 
-  newRow.innerHTML = `
-    <div class="col-sm-12 col-md-6 col-lg-3">
-      <label for="${materialId}" class="form-label">Waste Type</label>
-      <select class="form-select" id="${materialId}" name="${materialId}" aria-label="Waste type select">
-        <option selected>Open this select menu</option>
-    
-      </select>
-    </div>
-    <div class="col-sm-12 col-md-3 col-lg-3">
-        <label for="${materialPrice}" class="form-label">Price</label>
-      <input type="text" class="form-control" id="${materialPrice}" name="${materialPrice}" placeholder="Please enter price" aria-label="price">
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-3">
-      <label for="${materialPercentage}" class="form-label">Quantity</label>
-      <input type="text" class="form-control" id="${materialPercentage}" name="${materialPercentage}" placeholder="Please enter quantity" aria-label="Quantity">
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-3 my-auto">
-      <button type="button" class="btn btn-primary mt-4 add-row-btn" onclick="addProductField()">+ADD</button>
-      <button type="button" class="btn btn-danger mt-4" onclick="removeProductField('row_${counter}')">-REMOVE</button>
+  function addProductField() {
+    var waste_obj = $('#waste_obj').val();
+    var waste_list = JSON.parse(waste_obj);
+    var container = document.getElementById("dynamicFieldsContainer");
+  
+    var newRow = document.createElement("div");
+    newRow.className = "row mt-3";
+    newRow.id = "row_" + counter;
+  
+    var materialId = "wast_id_" + counter;
+    var materialPrice = "price_" + counter;
+    var materialQuantity = "quantity_" + counter;
+    var materialTotal = "total_" + counter;  // New field for total
+  
+    newRow.innerHTML = `
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <label for="${materialId}" class="form-label">Waste Type</label>
+        <select class="form-select" id="${materialId}" name="${materialId}" aria-label="Waste type select">
+          <option selected>Open this select menu</option>
+        </select>
       </div>
-  `;
-
-  container.appendChild(newRow);
-  var selectElement = document.getElementById(materialId);
-  waste_list.forEach(function(material) {
-      var option = document.createElement("option");
-      option.text = material.fields.wastename;
-      option.value = material.pk;
-      selectElement.appendChild(option);
-  });
-
-
-  $(document).ready(function() {
-    $('#materialId').select2({
-        placeholder: "Select Material",
-        theme: "bootstrap5",
-        width: "100%" 
+      <div class="col-sm-12 col-md-6 col-lg-2">
+        <label for="${materialQuantity}" class="form-label">Quantity</label>
+        <input type="text" class="form-control" id="${materialQuantity}" name="${materialQuantity}" placeholder="Please enter quantity" aria-label="Quantity">
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-2">
+        <label for="${materialPrice}" class="form-label">Price</label>
+        <input type="text" class="form-control" id="${materialPrice}" name="${materialPrice}" placeholder="Please enter price" aria-label="Price">
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-2">
+        <label for="${materialTotal}" class="form-label">Total</label>
+        <input type="text" class="form-control" id="${materialTotal}" name="${materialTotal}" readonly>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3 my-auto">
+        <button type="button" class="btn btn-primary mt-4" onclick="addProductField()">+ADD</button>
+        <button type="button" class="btn btn-danger mt-4" onclick="removeProductField('row_${counter}')">-REMOVE</button>
+      </div>
+    `;
+  
+    container.appendChild(newRow);
+  
+    // Populate the new select element with waste list
+    var selectElement = document.getElementById(materialId);
+    waste_list.forEach(function(material) {
+        var option = document.createElement("option");
+        option.text = material.fields.wastename;
+        option.value = material.pk;
+        selectElement.appendChild(option);
     });
-});
-
- 
-  counter++;
-}
-
+  
+    // Initialize Select2 on the newly created select element
+    $(document).ready(function() {
+      $('#materialId').select2({
+          placeholder: "Select Material",
+          theme: "bootstrap5",
+          width: "100%" 
+      });
+    })
+  
+    // Add event listeners to quantity and price to calculate the total
+    document.getElementById(materialQuantity).addEventListener('input', function() {
+      calculateRowTotal(materialQuantity, materialPrice, materialTotal);
+    });
+  
+    document.getElementById(materialPrice).addEventListener('input', function() {
+      calculateRowTotal(materialQuantity, materialPrice, materialTotal);
+    });
+  
+    counter++;
+  }
+  
+  // Function to calculate total price for each row
+  function calculateRowTotal(quantityId, priceId, totalId) {
+    var quantity = parseFloat(document.getElementById(quantityId).value) || 0;
+    var price = parseFloat(document.getElementById(priceId).value) || 0;
+    var total = quantity * price;
+    
+    document.getElementById(totalId).value = total.toFixed(2);  // Display total with 2 decimal places
+  }
+  
+  function removeProductField(rowId) {
+    var row = document.getElementById(rowId);
+    row.parentNode.removeChild(row);
+  }
+  
 
 function removeProductField(rowId) {
   var row = document.getElementById(rowId);
@@ -193,4 +224,17 @@ function save_trnscation(){
         }
     });
 }
+
+
+function calculateTotal() {
+  const quantity = parseFloat(document.getElementById('quantity_1').value) || 0;
+  const price = parseFloat(document.getElementById('price_1').value) || 0;
+  const total = price * quantity;
+  
+  document.getElementById('total_price_1').value = total.toFixed(2);  // Display total with 2 decimal places
+}
+
+// Add event listeners to both fields
+document.getElementById('quantity_1').addEventListener('input', calculateTotal);
+document.getElementById('price_1').addEventListener('input', calculateTotal);
 

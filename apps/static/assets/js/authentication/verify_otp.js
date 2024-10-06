@@ -96,3 +96,24 @@ function verify_btn() {
       }
     })
 };
+
+
+function update_neww_password(){
+  const password = $("#password").val()
+  const confirm_password = $("#confirm_password").val()
+  if (password !== confirm_password) {
+    show_error("New password and confirm password do not match.");
+    return;
+  }
+  $.ajax({
+    url: '/password_updated/',
+    method: 'POST',
+    data: {'password': password},
+    success: function(response){
+      show_success(response['message'])
+    },
+    error: function(response){
+      show_error(response.responseJSON['error'])
+    }
+  })
+}

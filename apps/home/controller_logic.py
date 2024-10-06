@@ -162,3 +162,17 @@ def get_area_based_shops(request):
         return JsonResponse({'shop': shops})
     except Exception as e:
         return JsonResponse({'message': f'{e}'}, status=401)
+
+@csrf_exempt  
+@login_required
+def password_updated(request):
+    try:
+        post_data = request.POST
+        user_ID=request.user.id
+        user = Users.objects.get(id=user_ID,is_active=True)
+        if user:
+            user.otp = request.POST.get('password')
+            user.save()
+        return JsonResponse({'message': 'successfully updated password'})
+    except Exception as e:
+        return JsonResponse({'message': f'{e}'}, status=401)

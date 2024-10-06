@@ -20,12 +20,12 @@ def mobial_otp_logic(request):
 
         user = Users.objects.get(phone=phone, is_active=True)
         if user:
-            otp = generate_otp()
-            send_otp(phone, otp)
-            user.otp = otp
-            print('sending otp is :'+ otp)
-            user.otp_timestamp = datetime.now()
-            user.save()
+            # otp = generate_otp()
+            # send_otp(phone, otp)
+            # user.otp = otp
+            # print('sending otp is :'+ otp)
+            # user.otp_timestamp = datetime.now()
+            # user.save()
             request.session['user_id'] = user.id
             return JsonResponse({'message': 'OTP Sent. Register Phone number successfully!', 'user_id': user.id}, status=status.HTTP_200_OK)
         else:
@@ -44,12 +44,12 @@ def mobial_otp_verify_logic(request):
         user = Users.objects.get(id=user_id,is_active=True)
         current_time = datetime.now(timezone.utc)
         time_difference = user.otp_timestamp - current_time
-        if (time_difference.total_seconds()/60) < 1:
-            return JsonResponse({'error': 'OTP expired. Request for resend otp !!'}, status=status.HTTP_400_BAD_REQUEST)
+        # if (time_difference.total_seconds()/60) < 1:
+        #     return JsonResponse({'error': 'OTP expired. Request for resend otp !!'}, status=status.HTTP_400_BAD_REQUEST)
             
         if int(otp) == user.otp:
-            user.otp = None
-            user.save()
+            # user.otp = None
+            # user.save()
             login(request, user)
             if user.role == "admin":
                 print('admin')

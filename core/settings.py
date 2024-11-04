@@ -16,7 +16,7 @@ from .jazzmin import JAZZMIN_SETTINGS
 BASE_DIR = Path(__file__).resolve().parent.parent
 # CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIRS = os.path.join(BASE_DIR,'apps/templates')
-
+STATIC_DIRS = os.path.join(BASE_DIR,'apps/static')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -129,11 +129,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'apps/static'),
+if DEBUG == True:
+   STATICFILES_DIRS = (
+    STATIC_DIRS,
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'apps/static'),
+# )
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

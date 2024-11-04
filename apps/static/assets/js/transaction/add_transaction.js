@@ -6,7 +6,7 @@ $(document).ready(function() {
    
   });
 
-
+// sum_of_tot_amount = 0
   function cluster_aera_shop_list(){
     var clusterAreaId =  $("#cluster_aera :selected").val();
     $.ajax({
@@ -45,7 +45,7 @@ $(document).ready(function() {
     var materialId = "wast_id_" + counter;
     var materialPrice = "price_" + counter;
     var materialQuantity = "quantity_" + counter;
-    var materialTotal = "total_" + counter;  // New field for total
+    var materialTotal = "total_" + counter; 
   
     newRow.innerHTML = `
       <div class="col-sm-12 col-md-6 col-lg-3">
@@ -56,14 +56,14 @@ $(document).ready(function() {
       </div>
       <div class="col-sm-12 col-md-6 col-lg-2">
         <label for="${materialQuantity}" class="form-label">Quantity</label>
-        <input type="text" class="form-control" id="${materialQuantity}" name="${materialQuantity}" placeholder="Please enter quantity" aria-label="Quantity">
+        <input type="text" class="form-control" id="${materialQuantity}" name="${materialQuantity}" placeholder="Please enter quantity" aria-label="Quantity" autocomplete="off">
       </div>
       <div class="col-sm-12 col-md-3 col-lg-2">
         <label for="${materialPrice}" class="form-label">Price</label>
-        <input type="text" class="form-control" id="${materialPrice}" name="${materialPrice}" placeholder="Please enter price" aria-label="Price">
+        <input type="text" class="form-control" id="${materialPrice}" name="${materialPrice}" placeholder="Please enter price" aria-label="Price" autocomplete="off">
       </div>
       <div class="col-sm-12 col-md-3 col-lg-2">
-        <label for="${materialTotal}" class="form-label">Total</label>
+        <label for="${materialTotal}" class="form-label">Total Price</label>
         <input type="text" class="form-control" id="${materialTotal}" name="${materialTotal}" readonly>
       </div>
       <div class="col-sm-12 col-md-6 col-lg-3 my-auto">
@@ -104,25 +104,75 @@ $(document).ready(function() {
     counter++;
   }
   
-  // Function to calculate total price for each row
+
+//  static code 
+  function calculateTotal() {
+    const quantity = parseFloat(document.getElementById('quantity_1').value) || 0;
+    const price = parseFloat(document.getElementById('price_1').value) || 0;
+    const total = price * quantity;
+  
+    document.getElementById('total_price_1').value = total.toFixed(2);
+    updateTotalAmount();
+    // sum_of_tot_amount += parseFloat(total.toFixed(2));
+    // document.getElementById("total_amount").value = sum_of_tot_amount;
+  
+  }
+  
+  document.getElementById('quantity_1').addEventListener('input', calculateTotal);
+  document.getElementById('price_1').addEventListener('input', calculateTotal);
+  
+  
+  
+// dyanamic Function to calculate total price for each row
   function calculateRowTotal(quantityId, priceId, totalId) {
     var quantity = parseFloat(document.getElementById(quantityId).value) || 0;
     var price = parseFloat(document.getElementById(priceId).value) || 0;
     var total = quantity * price;
     
-    document.getElementById(totalId).value = total.toFixed(2);  // Display total with 2 decimal places
+    document.getElementById(totalId).value = total.toFixed(2); 
+    updateTotalAmount();
+    // sum_of_tot_amount += parseFloat(total.toFixed(2));
+    // document.getElementById("total_amount").value = sum_of_tot_amount;
   }
   
   function removeProductField(rowId) {
     var row = document.getElementById(rowId);
-    row.parentNode.removeChild(row);
+    if (row) {
+        row.parentNode.removeChild(row);
+        updateTotalAmount(); // Update total after removal
+    }
+    // var row = document.getElementById(rowId);
+    // row.parentNode.removeChild(row);
   }
   
 
 function removeProductField(rowId) {
   var row = document.getElementById(rowId);
-  row.parentNode.removeChild(row);
+    if (row) {
+        row.parentNode.removeChild(row);
+        updateTotalAmount(); // Update total after removal
+    }
+  // var row = document.getElementById(rowId);
+  // row.parentNode.removeChild(row);
 }
+
+function updateTotalAmount() {
+  let totalAmount = 0;
+
+  // Add the static total price
+  totalAmount += parseFloat(document.getElementById("total_price_1").value) || 0;
+
+  // Add the dynamic row totals (if there are any)
+  for (let i = 2; i < counter; i++) {
+      let rowTotal = parseFloat(document.getElementById("total_" + i)?.value || 0);
+      totalAmount += rowTotal;
+  }
+
+  // Set the cumulative total in the total_amount field
+  document.getElementById("total_amount").value = totalAmount.toFixed(2);
+}
+
+
 
 
 function save_trnscation(){
@@ -225,16 +275,4 @@ function save_trnscation(){
     });
 }
 
-
-function calculateTotal() {
-  const quantity = parseFloat(document.getElementById('quantity_1').value) || 0;
-  const price = parseFloat(document.getElementById('price_1').value) || 0;
-  const total = price * quantity;
-  
-  document.getElementById('total_price_1').value = total.toFixed(2);  // Display total with 2 decimal places
-}
-
-// Add event listeners to both fields
-document.getElementById('quantity_1').addEventListener('input', calculateTotal);
-document.getElementById('price_1').addEventListener('input', calculateTotal);
 

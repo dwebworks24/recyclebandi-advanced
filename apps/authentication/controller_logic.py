@@ -43,7 +43,7 @@ def mobial_otp_verify_logic(request):
             
         user = Users.objects.get(id=user_id,is_active=True)
         current_time = datetime.now(timezone.utc)
-        time_difference = user.otp_timestamp - current_time
+        #time_difference = user.otp_timestamp - current_time
         # if (time_difference.total_seconds()/60) < 1:
         #     return JsonResponse({'error': 'OTP expired. Request for resend otp !!'}, status=status.HTTP_400_BAD_REQUEST)
             

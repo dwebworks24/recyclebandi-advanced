@@ -44,6 +44,7 @@ def shop_owner_save_logic(request):
             user.email = email
             user.pincode = zip_code
             user.role = 'cluster'
+            user.otp = 1234
             user.created_at = datetime.now()
             user.updated_at = datetime.now()
             user.save()
@@ -63,7 +64,7 @@ def shop_owner_save_logic(request):
             shop_owner.created_by = request.user
             shop_owner.save()
 
-            return JsonResponse({'message': 'OTP Sent. Register Phone number successfully!','path': '/add_transaction/'}, status=200)
+            return JsonResponse({'message': 'shop created successfully!','path': '/add_transaction/'}, status=200)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=401)
     else:

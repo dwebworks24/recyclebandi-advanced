@@ -48,7 +48,7 @@
                                       <div class="form-group mb-3 has-danger">
                                         <label for="first_name">Cluster Aera</label>
                                         <select class="form-select form-control" id="cluster_aera" onchange="cluster_aera_shop_list()"
-                                          aria-label="Default select example">
+                                          aria-label="" required>
                                           <option selected>select cluster aera</option>
                                           {% for item in clusteraera %}
                                           <option value="{{item.id}}">{{item.cluster_aera}}</option>
@@ -60,7 +60,7 @@
                                     <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
                                       <div class="form-group mb-3 has-danger">
                                         <label for="first_name">Shop Owner</label>
-                                        <select class="form-select form-control" id="Select2" aria-label="Default select example">
+                                        <select class="form-select form-control" id="Select2" aria-label="" required>
                                           <option selected>Open this select menu </option>
                                           {% for item in owners %}
                                           <option value="{{item.id}}">{{item.user.first_name}}|{{item.shop_name}}</option>
@@ -96,23 +96,23 @@
                                         <select class="form-select" id="waste_type_select2" aria-label="Default select example">
                                           <option selected>Open this select menu</option>
                                           {% for item in waste %}
-                                          <option value="{{item.id}}">{{item.wastename}}|{{item.price}}</option>
+                                          <option value="{{item.id}}">{{item.wastename}}</option>
                                           {% endfor %}
                                         </select>
                                       </div>
                                       <div class="col-sm-12 col-md-2 col-lg-2">
                                         <label for="quantity_1" class="form-label">Quantity</label>
-                                        <input type="text" class="form-control" id="quantity_1" name="quantity_1" placeholder="Please enter quantity"
+                                        <input type="text" class="form-control" id="quantity_1" name="quantity_1" placeholder="Please enter quantity" autocomplete="off"
                                           aria-label="Quantity">
                                       </div>
                                       <div class="col-sm-12 col-md-2 col-lg-2">
                                         <label for="price_1" class="form-label">Price</label>
-                                        <input type="text" class=" form-control" id="price_1" name="price_1" placeholder="Please enter price"
+                                        <input type="text" class=" form-control" id="price_1" name="price_1" placeholder="Please enter price" autocomplete="off"
                                           aria-label="price">
                                       </div>
                                       <div class="col-sm-12 col-md-3 col-lg-2">
                                         <label for="total_price_1" class="form-label">Total Price</label>
-                                        <input type="text" class="form-control" id="total_price_1" name="total_price_1" readonly>
+                                        <input type="text" class="form-control" id="total_price_1" name="total_price_1" onchange="updateTotalAmount()" readonly>
                                       </div>
                                       
                                       <!-- <input type="" class="form-control" id="total_price_1" name="total_price_1" readonly style="width: 15%;"> -->
@@ -122,8 +122,13 @@
                                     </div>
                                     <div id="dynamicFieldsContainer"></div>
                                     <div class="col-sm-12 col-md-3 col-lg-3 mt-3">
+                                      <label for="total_amount" class="form-label">Totoal Amount</label>
+                                      <input type="text" class="form-control" id="total_amount" name="total_amount" placeholder="total amount" onchange="myvalu()"
+                                        aria-label="total_amount" readonly>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 col-lg-3 mt-3">
                                       <label for="paid_amount" class="form-label">Paid Amount</label>
-                                      <input type="text" class="form-control" id="paid_amount" name="paid_amount" placeholder="Please enter paid amount"
+                                      <input type="text" class="form-control" id="paid_amount" name="paid_amount" placeholder="Please enter paid amount" 
                                         aria-label="paid_amount">
                                     </div>
                                     <div class="form-group">
@@ -148,5 +153,6 @@
 </div>
 {% endblock content %}
 {% block javascripts %}
+
 <script src="{% static 'assets/js/transaction/add_transaction.js' %}"></script>
 {% endblock javascripts %}

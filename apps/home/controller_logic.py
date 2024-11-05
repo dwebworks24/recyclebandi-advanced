@@ -126,9 +126,19 @@ def save_new_transaction_data(request):
             
             transaction_bal = transaction_amount - float(paid_amount)
             shop_id = pickup_transaction.shop_owner_id
-            pre_tra = PickupTransaction.objects.filter(shop_owner_id = shop_id).order_by('-id')[1]
+            # pre_tra = PickupTransaction.objects.filter(shop_owner_id = shop_id).order_by('-id')[1]
 
-            total_amount = pre_tra.total_amount if pre_tra.total_amount is not None else Decimal('0.0')
+            # total_amount = pre_tra.total_amount if pre_tra.total_amount is not None else Decimal('0.0')
+
+            # if pre_tra:
+            #     total_amount = pre_tra[0].total_amount if pre_tra[0].total_amount is not None else Decimal('0.0')
+            # else:
+            #     total_amount = Decimal('0.0')  
+            try:
+                pre_tra = PickupTransaction.objects.filter(shop_owner_id=shop_id).order_by('-id')[1]
+                total_amount = pre_tra.total_amount if pre_tra.total_amount is not None else Decimal('0.0')
+            except IndexError:
+                total_amount = Decimal('0.0')         
             transaction_bal_decimal = Decimal(transaction_bal)
             balance = total_amount + transaction_bal_decimal
 

@@ -69,81 +69,18 @@ class Users(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True
 
-class Clusteraera(models.Model):
-    cluster_aera = models.CharField(max_length=255, null=True,blank=True,default='')
-    class Meta:
-        managed = True
-        db_table = 'cluster_aera'
 
-shop_type = (
-        ('panshop', 'pan shop'),
-        ('teashop', 'tea shop'),
-        ('hosptial','hosptial'),
-        ('restrant','restrant'),
-    )
-class ShopOwner(models.Model):
-    shopowner_number = models.CharField(max_length=255,unique=True,default='')
+class Transaction(models.Model):
     user = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='created_user',db_column='users_id')
-    shop_name = models.CharField(max_length=255)
-    shop_type = models.CharField(choices=shop_type,max_length=100,null=True,blank=True,default='')
-    area = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    points = models.DecimalField(max_digits=10, decimal_places=2,default='0')
-    rcb_agreed = models.BooleanField(default=True)
-    cluser_aera = models.ForeignKey('Clusteraera', models.DO_NOTHING,null=False,blank=False,related_name='cluster',db_column='cluster_aera')
-    created_by = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='created_owner',db_column='created_by')
+    date = models.DateField()
+    account_balance = models.DecimalField(max_digits=12, decimal_places=2)
+    withdrawal = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    deposit = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    purpose = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.shopowner_number} {self.shop_name}"
-    class Meta:
-        managed = True
-        db_table = 'owner_details'
-
-
-
-class WasteType(models.Model):
-    wastename = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='waste_images/', blank=True, null=True)
-    quantity = models.CharField(max_length=255,default="kg")
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    created_by = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='waste_type',db_column='created_by')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.wastename}"
-    class Meta:
-        managed = True
-        db_table = 'waste_type'
-
-
-class PickupTransaction(models.Model):
-    shop_owner = models.ForeignKey('ShopOwner', models.DO_NOTHING, null=False,blank=False,db_column='shop_owner_id')
-    given_bags = models.BooleanField(default=True)
-    lifted_status = models.BooleanField(default=True)
-    pickup_date = models.DateTimeField(auto_now_add=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
-    transaction_amount = models.DecimalField(max_digits=10,default= 0.0, decimal_places=2,null=True,blank=True)
-    paid_amount = models.DecimalField(max_digits=10, default=0.0 ,decimal_places=2,null=True,blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    cluser_aera = models.ForeignKey('Clusteraera', models.DO_NOTHING, null=False,blank=False,related_name='cluster_transaction',db_column='cluster_aera')
-    created_by = models.ForeignKey('Users', models.DO_NOTHING, null=False,blank=False,related_name='created_waste_type',db_column='created_by')
-
-    class Meta:
-        managed = True
-        db_table = 'pickup_transaction'
-
-class PickupWastData(models.Model):
-    waste_type = models.ForeignKey('WasteType', models.DO_NOTHING, null=False,blank=False,db_column='waste_type_id')
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.CharField(max_length=255)
-    pickup_transaction = models.ForeignKey('PickupTransaction', models.DO_NOTHING, null=False,blank=False,db_column='pickup_transaction_id')
+        return f"{self.date} - {self.purpose}"
     
-    class Meta:
-        managed = True
-        db_table = 'pickup_waste_data'
-
+ 

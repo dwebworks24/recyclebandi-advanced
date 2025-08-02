@@ -21,7 +21,7 @@ def mobial_otp_logic(request):
         user = Users.objects.get(phone=phone, is_active=True)
         if user:
             # otp = generate_otp()
-            # send_otp(phone, otp)
+            send_otp(phone, otp)
             # user.otp = otp
             # print('sending otp is :'+ otp)
             # user.otp_timestamp = datetime.now()

@@ -41,8 +41,3 @@ class AdminPickupWastData(admin.ModelAdmin):
         return obj.pickup_transaction.shop_owner
 
 admin.site.register(Users,AdminUserlist)
-admin.site.register(ShopOwner,AdminShopOwner)
-admin.site.register(WasteType,AdminWasteType)
-admin.site.register(PickupTransaction,AdminPickupTransaction)
-admin.site.register(PickupWastData,AdminPickupWastData)
-admin.site.register(Clusteraera,AdminCluster_aera)

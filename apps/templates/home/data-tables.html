@@ -30,13 +30,28 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Buttons example</h4>
-                            <p class="card-title-desc">The Buttons extension for DataTables
-                                provides a common set of options, API methods and styling to display
-                                buttons on a page that will interact with a DataTable. The core library
-                                provides the based framework upon which plug-ins can built.
-                            </p>
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div>
+                                    <form action="/upload/" class="dropzone" id="my-dropzone" method="post" enctype="multipart/form-data">
+                                         {% csrf_token %}
+                                        <div class="dz-message needsclick text-center">
+                                            <div class="mb-3">
+                                                <i class="display-4 text-muted bx bx-cloud-upload"></i>
+                                            </div>
+                                            <h5>Drop files here or click to upload.</h5>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                                <div class="text-center mt-4">
+                                    <span>download sample excel uploader file <a href="">click hear</a></span>
+                                    <!-- <button type="button" class="btn btn-primary waves-effect waves-light">Send
+                                        Files</button> -->
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -285,13 +300,15 @@
                     <!-- end cardaa -->
                 </div> <!-- end col -->
             </div>
-             <!-- end row -->
-        </div> 
+            <!-- end row -->
+        </div>
     </div>
     <!-- End Page-content -->
 
 
-   
+
 </div>
 {% endblock content %}
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="{% static 'assets/js/dashboard/dashboard.js' %}"></script>
+{% endblock javascripts %}

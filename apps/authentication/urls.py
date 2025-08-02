@@ -2,7 +2,7 @@ from django.urls import path
 from apps.authentication import views
 from apps.authentication import controller_logic
 urlpatterns = [
-    path('', views.otp_login, name='home'),
+    path('', views.user_login, name='home'),
     path("logout/", views.logout_view, name="logout"),
     path('verify_otp/', views.sigin, name='verify_otp'),
 
